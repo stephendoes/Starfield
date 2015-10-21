@@ -3,7 +3,7 @@ NormalParticle [] starField;
 void setup()
 {
 	//your code here
-	starField = new NormalParticle[20];
+	starField = new NormalParticle[200];
 	for (int i = 0; i <starField.length; i++)
 	{
 		starField[i] = new NormalParticle(200,200);
@@ -16,7 +16,7 @@ void draw()
 {
 	//your code here
 	background(0);
-	for (int i = 0; i < colony.length; i++)
+	for (int i = 0; i < starField.length; i++)
 	{
 		starField[i].move();
 		starField[i].show();
@@ -27,28 +27,32 @@ void draw()
 class NormalParticle
 {
 	//your code here
-	double parX, parY, parAngle,  parSpeed;
-	int parC1;int parC2; int parC3;  
-	NormalParticle()
+	double  parAngle,  parX, parY;
+	int parC1;int parC2; int parC3; int parSpeed;
+	NormalParticle(int x, int y)
 	{
 		parX = x;
 		parY = y;
 		parC1 = (int)(Math.random()*255);
 		parC2 = (int)(Math.random()*255);
 		parC3 = (int)(Math.random()*255);
-		parAngle = (int)(Math.random()*10);
-		parSpeed = (int)(Math.random()*10);
+		parAngle = (int)(Math.random()*5)*Math.PI;
+		parSpeed = (int)(Math.random()*5);
 
 	}
 	void move()
 	{
-		parX + = Math.cos(parAngle)*parSpeed;
-		parY + = Math.sin(parAngle)*parSpeed;
+		double xMove;
+		double yMove;
+		xMove = Math.cos(parAngle)*parSpeed;
+		parX += xMove;
+		yMove = Math.sin(parAngle)*parSpeed;
+		parY += yMove;
 	}
 	void show()
 	{
-		fill(parC1,parc2,parC3);
-		ellipse(20,20,parX,parY);
+		fill(parC1,parC2,parC3);
+		ellipse((float)parX,(float)parY,20,20);
 	}
 }
 interface Particle
