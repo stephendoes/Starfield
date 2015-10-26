@@ -27,8 +27,8 @@ void draw()
 class NormalParticle
 {
 	//your code here
-	double  parAngle,  parX, parY;
-	int parC1;int parC2; int parC3; int parSpeed;
+	double  parAngle,  parX, parY, parReverse;
+	int parC1;int parC2; int parC3; int parSpeed;int parSize;
 	NormalParticle(int x, int y)
 	{
 		parX = x;
@@ -36,41 +36,41 @@ class NormalParticle
 		parC1 = (int)(Math.random()*255);
 		parC2 = (int)(Math.random()*255);
 		parC3 = (int)(Math.random()*255);
-		parAngle = Math.random()*5*Math.PI;
+		parAngle = Math.random()*10*Math.PI;
+		parReverse = 0 - parAngle;
 		parSpeed = (int)(Math.random()*5);
+		parSize = 7;
 
 	}
 	void move()
 	{
 		double xMove;
 		double yMove;
+		double xReverse;
+		double yReverse;
+		boolean MoveOut;
 		int xTimer = 0;
 		int yTimer = 0;
-
+		
 		xMove = Math.cos(parAngle)*parSpeed;
+		yMove = Math.sin(parAngle)*parSpeed;
+		xReverse = Math.cos(parReverse)*parSpeed;
+		yReverse = Math.sin(parReverse)*parSpeed;
 		
 		xTimer++;
-
-		yMove = Math.sin(parAngle)*parSpeed;
-		
 		yTimer++;
 
-		if (xTimer>10)
+		if (xTimer < 5)
 		{
-			parX-=xMove;
+			MoveOut = true;
 		}
-		else parX +=xMove;
-		if (yTimer > 10)
-		{
-			parY -=yMove;
-		}
-		else parY+=yMove;
+		else if 			
 
 	}
 	void show()
 	{
 		fill(parC1,parC2,parC3);
-		ellipse((float)parX,(float)parY,7,7);
+		ellipse((float)parX,(float)parY,parSize,parSize);
 	}
 }
 interface Particle
