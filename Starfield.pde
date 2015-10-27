@@ -1,5 +1,7 @@
 //your code here
 NormalParticle [] starField;
+
+
 void setup()
 {
 	//your code here
@@ -18,12 +20,17 @@ void draw()
 	background(0);
 	for (int i = 0; i < starField.length; i++)
 	{
+
 		starField[i].move();
 		starField[i].show();
 
 	}
-
+	
 }
+void mousePressed()
+	{
+		redraw();
+	}
 class NormalParticle
 {
 	//your code here
@@ -37,7 +44,6 @@ class NormalParticle
 		parC2 = (int)(Math.random()*255);
 		parC3 = (int)(Math.random()*255);
 		parAngle = Math.random()*10*Math.PI;
-		parReverse = 0 - parAngle;
 		parSpeed = (int)(Math.random()*5);
 		parSize = 7;
 
@@ -46,32 +52,19 @@ class NormalParticle
 	{
 		double xMove;
 		double yMove;
-		double xReverse;
-		double yReverse;
-		boolean MoveOut;
-		int xTimer = 0;
-		int yTimer = 0;
-		
-		xMove = Math.cos(parAngle)*parSpeed;
-		yMove = Math.sin(parAngle)*parSpeed;
-		xReverse = Math.cos(parReverse)*parSpeed;
-		yReverse = Math.sin(parReverse)*parSpeed;
-		
-		xTimer++;
-		yTimer++;
-
-		if (xTimer < 5)
-		{
-			MoveOut = true;
-		}
-		else if 			
-
+	
+		boolean moveOut;
+		xMove= Math.cos(parAngle)*parSpeed;
+		yMove= Math.sin(parAngle)*parSpeed;
+		parX+=xMove;
+		parY+=yMove;
 	}
 	void show()
 	{
 		fill(parC1,parC2,parC3);
 		ellipse((float)parX,(float)parY,parSize,parSize);
 	}
+	
 }
 interface Particle
 {
