@@ -2,17 +2,19 @@
 NormalParticle [] starField;
 
 
+
 void setup()
 {
 	//your code here
-	starField = new NormalParticle[200];
+	frameRate(60);
+	size(400,400);
+
+	starField = new NormalParticle[2000];
 	for (int i = 0; i <starField.length; i++)
 	{
 		starField[i] = new NormalParticle(200,200);
 	}
-	frameRate(30);
-	size(400,400);
-}
+}	
 
 void draw()
 {
@@ -20,22 +22,17 @@ void draw()
 	background(0);
 	for (int i = 0; i < starField.length; i++)
 	{
-
 		starField[i].move();
 		starField[i].show();
-
 	}
 	
 }
-void mousePressed()
-	{
-		redraw();
-	}
+
 class NormalParticle
 {
 	//your code here
-	double  parAngle,  parX, parY, parReverse;
-	int parC1;int parC2; int parC3; int parSpeed;int parSize;
+	private double  parAngle,  parX, parY, parReverse;
+	private int parC1;int parC2; int parC3; int parSpeed;int parSize;
 	NormalParticle(int x, int y)
 	{
 		parX = x;
@@ -56,8 +53,9 @@ class NormalParticle
 		boolean moveOut;
 		xMove= Math.cos(parAngle)*parSpeed;
 		yMove= Math.sin(parAngle)*parSpeed;
-		parX+=xMove;
-		parY+=yMove;
+		parX+=Math.random()*xMove;
+		parY+=Math.random()*yMove;
+
 	}
 	void show()
 	{
@@ -69,6 +67,7 @@ class NormalParticle
 interface Particle
 {
 	//your code here
+	
 }
 class OddballParticle //uses an interface
 {
